@@ -1,4 +1,4 @@
-import torch 
+import torch
 from torch import nn
 from liquidnet.main import LiquidNet
 
@@ -11,20 +11,17 @@ class VisionLiquidNet(nn.Module):
         self.pool = nn.MaxPool2d(kernel_size=2, stride=2, padding=0)
         self.conv2 = nn.Conv2d(16, 32, kernel_size=5, stride=1, padding=2)
 
-
         # Number of features the last conv will output
         num_features_after_conv = 32 * 8 * 8
 
-
         # LiquidNet cell
         self.liquid_net = LiquidNet(num_units)
-        
 
         # Linear layer
         self.fc = nn.Linear(num_units, num_classes)
 
         self.hidden_state = None
-    
+
     def forward(self, x):
         # Apply convolutional layers
         x = self.pool(torch.relu(self.conv1(x)))
@@ -35,9 +32,9 @@ class VisionLiquidNet(nn.Module):
 
         # Initialize the hidden state if it is the first pass
         if self.hidden_state is None:
-            self.hidden_state = torch.zeros(
-                x.size(0), self.liquid_net.state_size
-            ).to(x.device)
+            self.hidden_state = torch.zeros(x.size(0), self.liquid_net.state_size).to(
+                x.device
+            )
 
         # Forward pass through the liquidnet
         x, self.hidden_state = self.liquid_net(x, self.hidden_state)
@@ -45,8 +42,3 @@ class VisionLiquidNet(nn.Module):
         # Classification layer
         x = self.fc(x)
         return x
-    
-
-x = torch.randn(4, 3, 32, 32)
-model = VisionLiquidNet(64, 10)
-print(model(x).shape)

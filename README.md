@@ -4,7 +4,7 @@
 This is a simple implementation of the Liquid net official repo translated into pytorch for simplicity. [Find the original repo here:](https://github.com/raminmh/liquid_time_constant_networks)
 
 ## Install
-`pip install liquid-net`
+`pip install liquidnet`
 
 ## Usage
 ```python
@@ -29,6 +29,25 @@ outputs, final_state = ltc_cell(inputs, initial_state)
 # Print the shape of outputs and final_state
 print("Outputs shape:", outputs.shape)
 print("Final state shape:", final_state.shape)
+
+```
+
+## `VisionLiquidNet`
+- Simple model with 2 convolutions with 2 max pools, alot of room for improvement
+
+```python
+import torch 
+from liquidnet.vision_liquidnet import VisionLiquidNet
+
+# Random Input Image
+x = torch.randn(4, 3, 32, 32)
+
+# Create a VisionLiquidNet with a specified number of units
+model = VisionLiquidNet(64, 10)
+
+# Forward pass through the VisionLiquidNet
+print(model(x).shape)
+
 
 ```
 

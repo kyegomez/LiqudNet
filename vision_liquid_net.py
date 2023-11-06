@@ -1,4 +1,4 @@
-import torch 
+import torch
 from liquidnet.vision_liquidnet import VisionLiquidNet
 
 # Random Input Image
