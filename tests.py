@@ -1,6 +1,5 @@
 import os
 
-import numpy as np
 import pytest
 import torch
 from torch import nn
@@ -122,10 +121,6 @@ def test_liquid_net_parameter_constraints(liquid_net):
     for param in constraints:
         assert (param >= 0).all()  # Ensure non-negativity of parameters
 
-
-# Add more test cases as needed
-
-
 # Define some constants for testing
 NUM_UNITS = 64
 BATCH_SIZE = 4
@@ -197,13 +192,6 @@ def test_solver_and_mapping_types(
     liquid_net._input_mapping = mapping_type
     outputs, final_state = liquid_net(sample_inputs, initial_state)
     # Add assertions based on solver and mapping_type configurations
-
-
-# Write a test for continuous integration (CI) integration
-def test_continuous_integration():
-    # Simulate CI environment
-    assert True
-
 
 if __name__ == "__main__":
     pytest.main()
