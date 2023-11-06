@@ -59,3 +59,6 @@ print("Final state shape:", final_state.shape)
 # License
 MIT
 
+
+# Todo:
+- [ ] Implement LiquidNet for vision and train on CIFAR
