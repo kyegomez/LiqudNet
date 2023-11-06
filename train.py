@@ -69,6 +69,14 @@ for epoch in range(10):
 
 print("Finished Training")
 
+# print(f"Evaluating the model on the test dataset...")
+# correct = 0
+# total = 0
+# with torch.no_grad():
+#     for data in testloader:
+#         images, labels = data
+#         outputs, _ = model(images, initial_state)
+
 # Save the model
 PATH = './cifar_net.pth'
 torch.save(model.state_dict(), PATH)
